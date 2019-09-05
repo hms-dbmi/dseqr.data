@@ -8,9 +8,9 @@
 dl_drug_es <- function(files = c('cmap_es_ind.rds', 'l1000_drugs_es.rds', 'l1000_genes_es.rds'), check = FALSE) {
 
   # make sure doesn't already exist
-  dest_dir <- system.file('extdata', package = 'drugseqr.data', mustWork = TRUE)
-  if (!dir.exists(dest_dir)) stop('Make sure you build drugseqr.data first.')
-
+  dest_dir <- system.file(package = 'drugseqr.data', mustWork = TRUE)
+  dest_dir <- file.path(dest_dir, 'extdata')
+  dir.create(dest_dir)
 
   can_load <- c()
   exist_files <- file.exists(file.path(dest_dir, files))
