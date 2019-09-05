@@ -4,13 +4,17 @@
 \alias{build_kallisto_index}
 \title{Download ensembl transcriptome and build index for kalliso quantification}
 \usage{
-build_kallisto_index(species = "homo_sapiens", release = "94")
+build_kallisto_index(species = "homo_sapiens", release = "94",
+  kallisto_path = "/home/ubuntu/miniconda2/bin/kallisto")
 }
 \arguments{
 \item{species}{The species. Default is \code{homo_sapiens}.}
 
 \item{release}{ensembl release. Default is \code{94} (latest in release for AnnotationHub -
 needs to match with \code{\link{build_ensdb}}).}
+
+\item{kallisto_path}{path to kallisto executable. Find with \code{which kallisto} in terminal.
+Default assumes miniconda based installation.}
 }
 \description{
 This index is used for RNA seq quantification.
