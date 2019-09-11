@@ -15,7 +15,7 @@
 #' # build kallist index for humans
 #' build_kallisto_index(indices_dir)
 #'
-build_kallisto_index <- function(species = 'homo_sapiens', release = '94', kallisto_path = '/home/ubuntu/miniconda2/bin/kallisto') {
+build_kallisto_index <- function(species = 'homo_sapiens', release = '94', kallisto_path = '/home/ubuntu/miniconda/bin/kallisto') {
 
   indices_dir <- system.file(package = 'drugseqr.data')
   indices_dir <- file.path(indices_dir, 'indices/kallisto')
