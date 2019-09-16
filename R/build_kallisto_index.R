@@ -5,8 +5,6 @@
 #' @param species The species. Default is \code{homo_sapiens}.
 #' @param release ensembl release. Default is \code{94} (latest in release for AnnotationHub -
 #'   needs to match with \code{\link{build_ensdb}}).
-#' @param kallisto_path path to kallisto executable. Find with \code{which kallisto} in terminal.
-#'  Default assumes miniconda based installation.
 #'
 #' @return NULL
 #' @export
@@ -15,9 +13,9 @@
 #' # build kallist index for humans
 #' build_kallisto_index(indices_dir)
 #'
-build_kallisto_index <- function(species = 'homo_sapiens', release = '94', kallisto_path = '/home/ubuntu/miniconda/bin/kallisto') {
+build_kallisto_index <- function(species = 'homo_sapiens', release = '94') {
 
-  kallisto_version <- get_pkg_version(kallisto_path)
+  kallisto_version <- get_pkg_version('kallisto')
   indices_dir <- system.file(package = 'drugseqr.data')
   indices_dir <- file.path(indices_dir, paste0('indices/kallisto_', kallisto_version))
 
@@ -46,7 +44,7 @@ build_kallisto_index <- function(species = 'homo_sapiens', release = '94', kalli
   # build index
   index_fname <- gsub('fa.gz$', paste0(ensembl_release, '_k31.idx'), ensembl_fasta)
   index_fname <- tolower(index_fname)
-  tryCatch(system2(kallisto_path, args=c('index',
+  tryCatch(system2('kallisto', args=c('index',
                                       '-i', index_fname,
                                       ensembl_fasta)),
            error = function(err) {err$message <- 'Is kallisto installed and on the PATH?'; stop(err)})
