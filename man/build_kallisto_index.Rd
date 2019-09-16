@@ -5,7 +5,7 @@
 \title{Download ensembl transcriptome and build index for kalliso quantification}
 \usage{
 build_kallisto_index(species = "homo_sapiens", release = "94",
-  kallisto_path = "/home/ubuntu/miniconda2/bin/kallisto")
+  kallisto_path = "/home/ubuntu/miniconda/bin/kallisto")
 }
 \arguments{
 \item{species}{The species. Default is \code{homo_sapiens}.}

@@ -17,8 +17,9 @@
 #'
 build_kallisto_index <- function(species = 'homo_sapiens', release = '94', kallisto_path = '/home/ubuntu/miniconda/bin/kallisto') {
 
+  kallisto_version <- get_pkg_version(kallisto_path)
   indices_dir <- system.file(package = 'drugseqr.data')
-  indices_dir <- file.path(indices_dir, 'indices/kallisto')
+  indices_dir <- file.path(indices_dir, paste0('indices/kallisto_', kallisto_version))
 
   if (!dir.exists(indices_dir))
     dir.create(indices_dir, recursive = TRUE)
@@ -52,4 +53,30 @@ build_kallisto_index <- function(species = 'homo_sapiens', release = '94', kalli
 
   unlink(ensembl_fasta)
   setwd(work_dir)
+}
+
+#' Get version of salmon/kallisto from system command.
+#'
+#' @param type Either \code{'salmon'} or \code{'kallisto'}.
+#'
+#' @return Version of salmon/kallisto.
+#' @export
+#' @keywords internal
+#'
+#' @examples
+get_pkg_version <- function(type) {
+  # possibly use older salmon with version appended to executable name
+  if (type == 'salmon') {
+    version <- system(paste(type, '--version'), intern = TRUE)
+    version <- gsub('^salmon ', '', version)
+
+  } else if (type == 'kallisto') {
+    version <- system(paste(type, 'version'), intern = TRUE)
+    version <- gsub('^kallisto, version ', '', version)
+
+  } else {
+    stop('type must be either salmon or kallisto')
+  }
+
+  return(version)
 }
