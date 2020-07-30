@@ -63,7 +63,7 @@ l1000_pdata <- pData(l1000_eset[[1]])
 # setup so that matches drug_es
 l1000_es <- readRDS('/home/alex/Documents/Batcave/GEO/l1000/level1/6-limma/l1000_es.rds')
 l1000_pval <- readRDS('/home/alex/Documents/Batcave/GEO/l1000/level1/6-limma/l1000_pval.rds')
-l1000_adj.pval <- readRDS('/home/alex/Documents/Batcave/GEO/l1000/level1/6-limma/l1000_adj.pval.rds')
+l1000_pval.adj <- readRDS('/home/alex/Documents/Batcave/GEO/l1000/level1/6-limma/l1000_pval.adj.rds')
 
 # remove columns that don't need right now
 # smiles and trt_nums (from rnama.com to match GSE1_p1-p2 contrasts from predicted groups)
@@ -108,7 +108,7 @@ l1000_cmp <- gsub('_', '-', l1000_cmp) # makes easy to extract (no '_' within co
 l1000_titles_no_cmp <- gsub('.+?_([^_]+_[^_]+_[^_]+)$', '\\1', l1000_pdata$title)
 l1000_titles_fixed <- paste(l1000_cmp, l1000_titles_no_cmp, sep='_')
 
-colnames(l1000_es) <- colnames(l1000_pval) <- colnames(l1000_adj.pval) <- l1000_pdata$title <- l1000_titles_fixed
+colnames(l1000_es) <- colnames(l1000_pval) <- colnames(l1000_pval.adj) <- l1000_pdata$title <- l1000_titles_fixed
 
 # check
 l1000_titles_cmp <- gsub('^([^_]+)_.+?$', '\\1', l1000_pdata$title)
@@ -135,7 +135,7 @@ l1000_drugs_pdata <- l1000_pdata[!is.genetic, ]
 # save pdata and overwrite existing l1000_es data with fixed names
 # ALSO UPDATE S3 DATA for l1000_es in drugseqr BUCKET IF ANYTHING CHANGES
 saveRDS(l1000_pval, file.path(data_dir, 'l1000_pval.rds'))
-saveRDS(l1000_adj.pval, file.path(data_dir, 'l1000_adj.pval.rds'))
+saveRDS(l1000_pval.adj, file.path(data_dir, 'l1000_pval.adj.rds'))
 saveRDS(l1000_genes_es, file.path(data_dir, 'l1000_genes_es.rds'))
 saveRDS(l1000_drugs_es, file.path(data_dir, 'l1000_drugs_es.rds'))
 saveRDS(l1000_genes_pdata, file.path(data_dir, 'L1000_genes_pdata.rds'))

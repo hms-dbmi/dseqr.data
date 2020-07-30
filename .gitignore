@@ -9,7 +9,7 @@ inst/extdata/cmap_pval.adj_ind.rds
 inst/extdata/l1000_es.rds
 inst/extdata/l1000_drugs_es.rds
 inst/extdata/l1000_genes_es.rds
-inst/extdata/l1000_adj.pval.rds
+inst/extdata/l1000_pval.adj.rds
 inst/extdata/l1000_pval.rds
 
 inst/indices/*
