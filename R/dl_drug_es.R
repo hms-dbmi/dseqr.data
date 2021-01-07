@@ -4,13 +4,14 @@
 #' @param check Check that existing drug effect size data is loadable? Default is FALSE.
 #'
 #' @return NULL
-#' @export
+#' @keywords internal
+#'
 dl_drug_es <- function(files = c('cmap_es_ind.rds', 'l1000_drugs_es.rds', 'l1000_genes_es.rds'), check = FALSE) {
 
   # make sure doesn't already exist
   dest_dir <- system.file(package = 'drugseqr.data', mustWork = TRUE)
   dest_dir <- file.path(dest_dir, 'extdata')
-  dir.create(dest_dir)
+  dir.create(dest_dir, showWarnings = FALSE)
 
   can_load <- c()
   exist_files <- file.exists(file.path(dest_dir, files))
@@ -45,4 +46,34 @@ dl_drug_es <- function(files = c('cmap_es_ind.rds', 'l1000_drugs_es.rds', 'l1000
     dl_url <- paste0('https://s3.us-east-2.amazonaws.com/drugseqr/', need_file)
     download.file(dl_url, file.path(dest_dir, need_file))
   }
+}
+
+
+#' Load drug effect size data
+#'
+#' Downloads requested file if not done so previously.
+#'
+#' @param file Character vector of drug effect size datasets to load. One of
+#'   \code{'cmap_es_ind.rds'} (CMAP02),
+#'   \code{'l1000_drugs_es.rds'} (L1000 compounds), or
+#'   \code{'l1000_genes_es.rds'} (L1000 genetic perturbations).
+#'
+#' @return data.frame of expression values. Rows are genes, columns are
+#'   perturbations.
+#' @export
+#'
+#' @examples
+#'
+#' # dummy example (actual files are large)
+#' load_drug_es('example.rds')
+#'
+load_drug_es <- function(file = c('cmap_es_ind.rds', 'l1000_drugs_es.rds', 'l1000_genes_es.rds')) {
+
+  dest_dir <- system.file(package = 'drugseqr.data', mustWork = TRUE)
+  fpath <- file.path(dest_dir, 'extdata', file[1])
+
+  if (!file.exists(fpath)) dl_drug_es(file)
+
+  drug_es <- readRDS(fpath)
+  return(drug_es)
 }

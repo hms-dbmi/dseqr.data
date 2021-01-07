@@ -17,3 +17,4 @@ dl_drug_es(
 \description{
 Download drug effect size data.
 }
+\keyword{internal}
