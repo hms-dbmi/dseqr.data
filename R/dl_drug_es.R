@@ -72,8 +72,22 @@ load_drug_es <- function(file = c('cmap_es_ind.rds', 'l1000_drugs_es.rds', 'l100
   dest_dir <- system.file(package = 'drugseqr.data', mustWork = TRUE)
   fpath <- file.path(dest_dir, 'extdata', file[1])
 
-  if (!file.exists(fpath)) dl_drug_es(file)
 
-  drug_es <- readRDS(fpath)
+  drug_es <- NULL
+
+  while(is.null(drug_es)) {
+
+    drug_es <- tryCatch({
+      readRDS(fpath)
+    },
+    error = function(err) {
+      message("Couldn't load ", fpath)
+      unlink(fpath)
+      dl_drug_es(file)
+      return(NULL)
+    })
+
+  }
+
   return(drug_es)
 }
