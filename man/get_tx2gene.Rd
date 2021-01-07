@@ -30,6 +30,5 @@ Get transcript to gene map.
 \examples{
 
 tx2gene <- get_tx2gene()
-
 }
 \keyword{internal}

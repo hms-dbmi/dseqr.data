@@ -12,7 +12,11 @@ dl_drug_es(
 \arguments{
 \item{files}{Character vector of file names to download.}
 
-\item{check}{Check that existing drug effect size data is loadable? Default is FALSE.}
+\item{check}{Check that existing drug effect size data is loadable? Default
+is FALSE.}
+}
+\value{
+Downloads drug effect size data into package folder.
 }
 \description{
 Download drug effect size data.

@@ -24,6 +24,5 @@ Downloads requested file if not done so previously.
 \examples{
 
 # dummy example (actual files are large)
-load_drug_es('example.rds')
-
+load_drug_es("example.rds")
 }

@@ -15,35 +15,40 @@
 #' @examples
 #'
 #' tx2gene <- get_tx2gene()
-#'
-get_tx2gene <- function(species = 'Homo sapiens',
-                        release = '94',
-                        columns = c("tx_id", "gene_name", "entrezid",
-                                    "gene_id", "seq_name", "description")) {
+get_tx2gene <- function(species = "Homo sapiens",
+    release = "94",
+    columns = c(
+        "tx_id", "gene_name", "entrezid",
+        "gene_id", "seq_name", "description"
+    )) {
 
-  # load EnsDb package
-  ensdb_package <- get_ensdb_package(species, release)
-  if (!require(ensdb_package, character.only = TRUE)) {
-    build_ensdb(species, release)
-    require(ensdb_package, character.only = TRUE)
-  }
+    # load EnsDb package
+    ensdb_package <- get_ensdb_package(species, release)
+    if (!require(ensdb_package, character.only = TRUE)) {
+        build_ensdb(species, release)
+        require(ensdb_package, character.only = TRUE)
+    }
 
-  # for printing available columns in EnsDb package
-  if (columns[1] == 'list') {
-    print(ensembldb::listColumns(get(ensdb_package)))
-    return(NULL)
-  }
+    # for printing available columns in EnsDb package
+    if (columns[1] == "list") {
+        print(ensembldb::listColumns(get(ensdb_package)))
+        return(NULL)
+    }
 
-  # map from transcripts to genes
-  tx2gene <- ensembldb::transcripts(get(ensdb_package),
-                                    columns=columns, return.type='data.frame')
-  tx2gene[tx2gene == ""] <- NA
-  tx2gene <- tx2gene[!is.na(tx2gene$gene_name), ]
+    # map from transcripts to genes
+    tx2gene <- ensembldb::transcripts(get(ensdb_package),
+        columns = columns, return.type = "data.frame"
+    )
+    tx2gene[tx2gene == ""] <- NA
+    tx2gene <- tx2gene[!is.na(tx2gene$gene_name), ]
 
-  if ('description' %in% colnames(tx2gene))
-    tx2gene$description <- gsub(' \\[Source.+?\\]', '', tx2gene$description)
+    if ("description" %in% colnames(tx2gene)) {
+          tx2gene$description <- gsub(" \\[Source.+?\\]",
+                                      "",
+                                      tx2gene$description)
+      }
 
-  return(tx2gene)
+    return(tx2gene)
 }
 
 #' Get ensembldb package name
@@ -55,16 +60,17 @@ get_tx2gene <- function(species = 'Homo sapiens',
 #' @export
 #' @examples
 #'
-#' get_ensdb_package(species = 'Homo sapiens', release = '94')
-#'
+#' get_ensdb_package(species = "Homo sapiens", release = "94")
 get_ensdb_package <- function(species, release) {
-  ensdb_species    <- strsplit(species, ' ')[[1]]
-  ensdb_species[1] <- toupper(substr(ensdb_species[1], 1, 1))
+    ensdb_species <- strsplit(species, " ")[[1]]
+    ensdb_species[1] <- toupper(substr(ensdb_species[1], 1, 1))
 
-  ensdb_package <- paste('EnsDb',
-                         paste0(ensdb_species, collapse = ''),
-                         paste0('v', release), sep='.')
-  return(ensdb_package)
+    ensdb_package <- paste("EnsDb",
+        paste0(ensdb_species, collapse = ""),
+        paste0("v", release),
+        sep = "."
+    )
+    return(ensdb_package)
 }
 
 
@@ -79,39 +85,40 @@ get_ensdb_package <- function(species, release) {
 #'
 #' # build ensembldb annotation package for human
 #' build_ensdb()
-#'
-build_ensdb <- function(species = 'Homo sapiens', release = '94') {
+build_ensdb <- function(species = "Homo sapiens", release = "94") {
 
-  # store ensembl databases in built package
-  ensdb_dir <- 'EnsDb'
-  unlink('EnsDb', recursive = TRUE)
-  dir.create(ensdb_dir)
+    # store ensembl databases in built package
+    ensdb_dir <- "EnsDb"
+    unlink("EnsDb", recursive = TRUE)
+    dir.create(ensdb_dir)
 
-  # format is genus_species in multiple other functions but not here
-  species <- gsub('_', ' ', species)
+    # format is genus_species in multiple other functions but not here
+    species <- gsub("_", " ", species)
 
-  # generate new ensembl database from specified release
-  ah <- AnnotationHub::AnnotationHub()
-  ahDb <- AnnotationHub::query(ah, pattern = c(species, "EnsDb", release))
+    # generate new ensembl database from specified release
+    ah <- AnnotationHub::AnnotationHub()
+    ahDb <- AnnotationHub::query(ah, pattern = c(species, "EnsDb", release))
 
-  if (!length(ahDb))
-    stop('Specified ensemble species/release not found in AnnotationHub.')
+    if (!length(ahDb)) {
+          stop("Specified ensemble species/release not found in AnnotationHub.")
+      }
 
-  ahEdb <- ahDb[[1]]
+    ahEdb <- ahDb[[1]]
 
-  ensembldb::makeEnsembldbPackage(
-    AnnotationDbi::dbfile(ensembldb::dbconn(ahEdb)),
-    '0.0.1', 'Alex Pickering <alexvpickering@gmail.com>',
-    'Alex Pickering',
-    ensdb_dir)
+    ensembldb::makeEnsembldbPackage(
+        AnnotationDbi::dbfile(ensembldb::dbconn(ahEdb)),
+        "0.0.1", "Alex Pickering <alexvpickering@gmail.com>",
+        "Alex Pickering",
+        ensdb_dir
+    )
 
-  # install new ensemble database
-  ensdb_name <- list.files(ensdb_dir)
-  ensdb_path <- file.path(ensdb_dir, ensdb_name)
-  utils::install.packages(ensdb_path, repos = NULL)
+    # install new ensemble database
+    ensdb_name <- list.files(ensdb_dir)
+    ensdb_path <- file.path(ensdb_dir, ensdb_name)
+    utils::install.packages(ensdb_path, repos = NULL)
 
-  # remove source files
-  unlink(ensdb_dir, recursive = TRUE)
+    # remove source files
+    unlink(ensdb_dir, recursive = TRUE)
 }
 
 
@@ -127,23 +134,23 @@ build_ensdb <- function(species = 'Homo sapiens', release = '94') {
 #'
 #' @examples
 #'
-#' tx2gene <- load_tx2ene('Homo sapiens', '94')
-#'
-load_tx2gene <- function(species = 'Homo sapiens', release = '94') {
+#' tx2gene <- load_tx2ene("Homo sapiens", "94")
+load_tx2gene <- function(species = "Homo sapiens", release = "94") {
+    if (grepl("musculus", species)) {
+        tx2gene <- readRDS(system.file("extdata",
+            "tx2gene_mouse.rds",
+            package = "drugseqr.data"
+        ))
+    } else if (grepl("sapiens", species)) {
+        tx2gene <- readRDS(system.file("extdata",
+            "tx2gene.rds",
+            package = "drugseqr.data"
+        ))
+    } else {
+        tx2gene <- get_tx2gene(species, release,
+            columns = c("tx_id", "gene_name", "entrezid")
+        )
+    }
 
-  if (grepl('musculus', species)) {
-    tx2gene <- readRDS(system.file('extdata',
-                                   'tx2gene_mouse.rds',
-                                   package = 'drugseqr.data'))
-  } else if (grepl('sapiens', species)) {
-    tx2gene <- readRDS(system.file('extdata',
-                                   'tx2gene.rds',
-                                   package = 'drugseqr.data'))
-
-  } else {
-    tx2gene <- get_tx2gene(species, release,
-                           columns = c("tx_id", "gene_name", "entrezid"))
-  }
-
-  return(tx2gene)
+    return(tx2gene)
 }

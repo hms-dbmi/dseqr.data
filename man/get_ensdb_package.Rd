@@ -22,6 +22,5 @@ Get ensembldb package name
 }
 \examples{
 
-get_ensdb_package(species = 'Homo sapiens', release = '94')
-
+get_ensdb_package(species = "Homo sapiens", release = "94")
 }
