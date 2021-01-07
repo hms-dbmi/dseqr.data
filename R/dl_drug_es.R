@@ -8,6 +8,9 @@
 #'
 dl_drug_es <- function(files = c('cmap_es_ind.rds', 'l1000_drugs_es.rds', 'l1000_genes_es.rds'), check = FALSE) {
 
+  timeout <- options()$timeout
+  options(timeout = 120)
+
   # make sure doesn't already exist
   dest_dir <- system.file(package = 'drugseqr.data', mustWork = TRUE)
   dest_dir <- file.path(dest_dir, 'extdata')
@@ -46,6 +49,8 @@ dl_drug_es <- function(files = c('cmap_es_ind.rds', 'l1000_drugs_es.rds', 'l1000
     dl_url <- paste0('https://s3.us-east-2.amazonaws.com/drugseqr/', need_file)
     download.file(dl_url, file.path(dest_dir, need_file))
   }
+
+  options(timeout = timeout)
 }
 
 
