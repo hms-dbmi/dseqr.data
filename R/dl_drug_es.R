@@ -81,11 +81,14 @@ load_drug_es <- function(file = c('cmap_es_ind.rds', 'l1000_drugs_es.rds', 'l100
       readRDS(fpath)
     },
     error = function(err) {
-      message("Couldn't load ", fpath)
+      message("Couldn't load ", file)
       unlink(fpath)
-      dl_drug_es(file)
       return(NULL)
     })
+
+    if (is.null(drug_es))
+      tryCatch(dl_drug_es(file),
+               error = function(err) message("Couldn't download", file))
 
   }
 
