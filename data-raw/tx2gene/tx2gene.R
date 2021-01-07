@@ -43,7 +43,7 @@ tx2gene <- group_by(tx2gene_unnest, tx_id) %>%
             seq_name = unique(seq_name),
             description = unique(description))
 
-# need tx_id, gene_name and entrezid for load_seq
+# need tx_id, gene_name and entrezid for rkal::load_seq
 # need gene_id for annotation
 # need description for app
 saveRDS(tx2gene, 'data-raw/tx2gene/tx2gene_mouse.rds')
