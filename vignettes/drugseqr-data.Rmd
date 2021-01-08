@@ -1,0 +1,64 @@
+---
+title: "drugseqr-data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{drugseqr-data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(drugseqr.data)
+```
+
+# Installation
+
+`drugseqr.data` can be installed from Bioconductor as follows:
+
+```{r, eval = FALSE}
+if(!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("drugseqr.data")
+```
+
+# Overview of drugseqr.data
+
+`drugseqr.data` includes:
+  - experiment data from CMAP02 and L1000 for the `drugseqr` package
+  - annotation used by `rkal` for importing RNA-Seq data
+
+# Getting Started using drugseqr.data
+
+To load and download CMAP02 and L1000 data, `drugseqr` does the following:
+
+
+```{r}
+# to load the actual data replace 
+# 'example.rds' with e.g. 'l1000_genes_es.rds'
+drug_es <- load_drug_es('example.rds')
+```
+
+To generate transcript-to-gene maps for importing the results of `kallisto`
+quantification, `rkal` calls the following:
+
+```{r}
+tx2gene <- load_tx2gene('Homo sapiens', release='94')
+```
+
+# Session info
+
+The following package and versions were used in the production of this vignette.
+
+```{r echo=FALSE}
+sessionInfo()
+```
+
+
+ 

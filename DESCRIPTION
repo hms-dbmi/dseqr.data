@@ -12,4 +12,9 @@ LazyData: true
 RoxygenNote: 7.1.1
 Suggests: 
     knitr,
-    BiocStyle
+    BiocStyle,
+    rmarkdown
+biocViews:
+    ExperimentData,
+    ExpressionData
+VignetteBuilder: knitr

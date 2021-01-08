@@ -13,3 +13,4 @@ inst/extdata/l1000_pval.adj.rds
 inst/extdata/l1000_pval.rds
 
 inst/indices/*
+inst/doc
