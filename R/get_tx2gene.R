@@ -9,7 +9,6 @@
 #'
 #' @return \code{data.frame} with columns \code{tx_id}, \code{gene_name}, and
 #'   \code{entrezid}
-#' @export
 #'
 #' @keywords internal
 #' @examples
@@ -79,7 +78,7 @@ get_ensdb_package <- function(species, release) {
 #' @inheritParams get_tx2gene
 #'
 #' @return Called for side effects.
-#' @export
+#' @keywords internal
 #'
 #' @examples
 #'

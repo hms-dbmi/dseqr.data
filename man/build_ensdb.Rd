@@ -24,3 +24,4 @@ Build and install ensembldb annotation package.
 # build ensembldb annotation package for human
 # build_ensdb()
 }
+\keyword{internal}
