@@ -22,5 +22,5 @@ Load transcript to gene map
 }
 \examples{
 
-tx2gene <- load_tx2ene("Homo sapiens", "94")
+tx2gene <- load_tx2gene("Homo sapiens", "94")
 }

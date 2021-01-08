@@ -1,12 +1,18 @@
 Package: drugseqr.data
 Type: Package
-Title: for drugseqr data
+Title: Data for 'drugseqr' and 'rkal' packages
 Version: 0.1.5
 Authors@R: person("Alex", "Pickering", email="alexvpickering@gmail.com",
-                role=c("cre", "aut"), 
+                role=c("cre", "aut"),
                 comment = c(ORCID = "0000-0002-0002-6759"))
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Supporting experiment and annotation data for 'drugseqr' and
+    'rkal' packages. Experiment data for 'drugseqr' includes CMAP02 and L1000 
+    perturbation expression profiles and associated perturbation metadata. 
+    Annotation data for 'rkal' includes transcript to gene mappings for 
+    importing 'kallisto' pseudo quantification results. Pre-built transcript
+    to gene mappings are included for human and mouse data and a functional
+    interface is provided for generating transcript to gene mappings for other
+    species.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -15,13 +21,13 @@ Imports:
     AnnotationHub,
     utils,
     ensembldb,
-    AnnotationDbi,
-    stringr
+    AnnotationDbi
 Suggests: 
     knitr,
     BiocStyle,
     rmarkdown,
-    testthat (>= 2.0.0)
+    testthat (>= 2.0.0),
+    roxygen2
 Depends: 
     R (>= 4.0)
 biocViews:

@@ -134,7 +134,7 @@ build_ensdb <- function(species = "Homo sapiens", release = "94") {
 #'
 #' @examples
 #'
-#' tx2gene <- load_tx2ene("Homo sapiens", "94")
+#' tx2gene <- load_tx2gene("Homo sapiens", "94")
 load_tx2gene <- function(species = "Homo sapiens", release = "94") {
     if (grepl("musculus", species)) {
         tx2gene <- readRDS(system.file("extdata",
