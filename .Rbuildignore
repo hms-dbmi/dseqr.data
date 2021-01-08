@@ -7,3 +7,5 @@
 ^inst/extdata/example\.rds$
 ^inst/extdata/l1000_drugs_es\.rds$
 ^inst/extdata/l1000_genes_es\.rds$
+
+^data-raw/*

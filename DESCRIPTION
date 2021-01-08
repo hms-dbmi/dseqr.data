@@ -24,7 +24,6 @@ Imports:
     AnnotationDbi
 Suggests: 
     knitr,
-    BiocStyle,
     rmarkdown,
     testthat (>= 2.0.0),
     roxygen2
@@ -35,4 +34,3 @@ biocViews:
     ExpressionData,
     Homo_sapiens_Data
 VignetteBuilder: knitr
-Config/testthat/edition: 2
