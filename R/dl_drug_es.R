@@ -55,7 +55,7 @@ dl_drug_es <- function(
         message("downloading: ", need_file)
         dl_url <- paste0("https://s3.us-east-2.amazonaws.com/drugseqr/",
                          need_file)
-        download.file(dl_url, file.path(dest_dir, need_file))
+        utils::download.file(dl_url, file.path(dest_dir, need_file))
     }
 
     options(timeout = timeout)
