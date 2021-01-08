@@ -22,5 +22,5 @@ Build and install ensembldb annotation package.
 \examples{
 
 # build ensembldb annotation package for human
-build_ensdb()
+# build_ensdb()
 }

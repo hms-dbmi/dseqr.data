@@ -3,7 +3,7 @@ title: "drugseqr-data"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{drugseqr-data}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
 ---
 

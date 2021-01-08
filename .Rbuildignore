@@ -1,4 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
-^inst/*
+
+# things that user downloads
+^inst/extdata/cmap_es_ind\.rds$
+^inst/extdata/example\.rds$
+^inst/extdata/l1000_drugs_es\.rds$
+^inst/extdata/l1000_genes_es\.rds$
