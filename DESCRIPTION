@@ -1,7 +1,7 @@
 Package: drugseqr.data
 Type: Package
-Title: Data for 'drugseqr' and 'rkal' packages
-Version: 0.1.5
+Title: Data for 'drugseqr' and 'rkal' Packages
+Version: 0.99.0
 Authors@R: person("Alex", "Pickering", email="alexvpickering@gmail.com",
                 role=c("cre", "aut"),
                 comment = c(ORCID = "0000-0002-0002-6759"))
@@ -34,3 +34,4 @@ biocViews:
     ExpressionData,
     Homo_sapiens_Data
 VignetteBuilder: knitr
+BugReports: https://github.com/hms-dbmi/drugseqr.data/issues
