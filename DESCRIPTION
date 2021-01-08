@@ -13,8 +13,10 @@ RoxygenNote: 7.1.1
 Suggests: 
     knitr,
     BiocStyle,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 2.0.0)
 biocViews:
     ExperimentData,
     ExpressionData
 VignetteBuilder: knitr
+Config/testthat/edition: 2
