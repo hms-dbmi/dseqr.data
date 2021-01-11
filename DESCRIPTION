@@ -28,7 +28,7 @@ Suggests:
     testthat (>= 2.0.0),
     roxygen2
 Depends: 
-    R (>= 4.0)
+    R (>= 4.1)
 biocViews:
     ExperimentData,
     ExpressionData,
