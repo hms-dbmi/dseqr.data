@@ -5,7 +5,10 @@
 #'   is FALSE.
 #'
 #' @return Downloads drug effect size data into package folder.
-#' @keywords internal
+#' @export
+#' @examples
+#'
+#' dl_drug_es('example.rds')
 #'
 dl_drug_es <- function(
     files = c("cmap_es_ind.rds", "l1000_drugs_es.rds", "l1000_genes_es.rds"),

@@ -21,4 +21,8 @@ Downloads drug effect size data into package folder.
 \description{
 Download drug effect size data.
 }
-\keyword{internal}
+\examples{
+
+dl_drug_es('example.rds')
+
+}
