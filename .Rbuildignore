@@ -3,9 +3,9 @@
 ^LICENSE\.md$
 
 # things that user downloads
-^inst/extdata/cmap_es_ind\.rds$
-^inst/extdata/example\.rds$
-^inst/extdata/l1000_drugs_es\.rds$
-^inst/extdata/l1000_genes_es\.rds$
+^inst/extdata/cmap_es_ind\.qs$
+^inst/extdata/example\.qs$
+^inst/extdata/l1000_drugs_es\.qs$
+^inst/extdata/l1000_genes_es\.qs$
 
 ^data-raw/*
