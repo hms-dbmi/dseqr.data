@@ -93,7 +93,7 @@ load_drug_es <- function(
     while (is.null(drug_es)) {
         drug_es <- tryCatch(
             {
-                readRDS(fpath)
+                qs::qread(fpath)
             },
             error = function(err) {
                 message("Couldn't load ", file)
