@@ -8,10 +8,10 @@
 #' @export
 #' @examples
 #'
-#' dl_drug_es('example.rds')
+#' dl_drug_es('example.qs')
 #'
 dl_drug_es <- function(
-    files = c("cmap_es_ind.rds", "l1000_drugs_es.rds", "l1000_genes_es.rds"),
+    files = c("cmap_es_ind.qs", "l1000_drugs_es.qs", "l1000_genes_es.qs"),
     check = FALSE) {
 
     timeout <- options()$timeout
@@ -70,9 +70,9 @@ dl_drug_es <- function(
 #' Downloads requested file if not done so previously.
 #'
 #' @param file Character vector of drug effect size datasets to load. One of
-#'   \code{'cmap_es_ind.rds'} (CMAP02),
-#'   \code{'l1000_drugs_es.rds'} (L1000 compounds), or
-#'   \code{'l1000_genes_es.rds'} (L1000 genetic perturbations).
+#'   \code{'cmap_es_ind.qs'} (CMAP02),
+#'   \code{'l1000_drugs_es.qs'} (L1000 compounds), or
+#'   \code{'l1000_genes_es.qs'} (L1000 genetic perturbations).
 #'
 #' @return data.frame of expression values. Rows are genes, columns are
 #'   perturbations.
@@ -81,9 +81,9 @@ dl_drug_es <- function(
 #' @examples
 #'
 #' # dummy example (actual files are large)
-#' load_drug_es("example.rds")
+#' load_drug_es("example.qs")
 load_drug_es <- function(
-    file = c("cmap_es_ind.rds", "l1000_drugs_es.rds", "l1000_genes_es.rds")) {
+    file = c("cmap_es_ind.qs", "l1000_drugs_es.qs", "l1000_genes_es.qs")) {
     dest_dir <- system.file(package = "drugseqr.data", mustWork = TRUE)
     fpath <- file.path(dest_dir, "extdata", file[1])
 

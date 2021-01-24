@@ -5,11 +5,11 @@
 drugseqr.data.Rproj
 
 # drug effect size data (new users dl from s3)
-inst/extdata/cmap_es_ind.rds
+inst/extdata/cmap_es_ind.qs
 inst/extdata/cmap_pval.adj_ind.rds
 inst/extdata/l1000_es.rds
-inst/extdata/l1000_drugs_es.rds
-inst/extdata/l1000_genes_es.rds
+inst/extdata/l1000_drugs_es.qs
+inst/extdata/l1000_genes_es.qs
 inst/extdata/l1000_pval.adj.rds
 inst/extdata/l1000_pval.rds
 

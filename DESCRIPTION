@@ -21,7 +21,8 @@ Imports:
     AnnotationHub,
     utils,
     ensembldb,
-    AnnotationDbi
+    AnnotationDbi,
+    qs
 Suggests: 
     knitr,
     rmarkdown,

@@ -52,7 +52,8 @@ all(cmap_pdata$title == colnames(cmap_es))
 row.names(cmap_pdata) <- NULL
 
 # save
-file.copy(cmap_es_path, file.path(data_dir, "cmap_es_ind.rds"))
+cmap_es <- readRDS(cmap_es_path)
+qs::qsave(cmap_es, file.path(data_dir, "cmap_es_ind.qs"))
 saveRDS(cmap_pdata, file.path(data_dir, "CMAP02_pdata.rds"))
 
 # setup pdata for L1000 ------
@@ -136,8 +137,8 @@ l1000_drugs_pdata <- l1000_pdata[!is.genetic, ]
 # ALSO UPDATE S3 DATA for l1000_es in drugseqr BUCKET IF ANYTHING CHANGES
 saveRDS(l1000_pval, file.path(data_dir, "l1000_pval.rds"))
 saveRDS(l1000_pval.adj, file.path(data_dir, "l1000_pval.adj.rds"))
-saveRDS(l1000_genes_es, file.path(data_dir, "l1000_genes_es.rds"))
-saveRDS(l1000_drugs_es, file.path(data_dir, "l1000_drugs_es.rds"))
+qs::qsave(l1000_genes_es, file.path(data_dir, "l1000_genes_es.qs"))
+qs::qsave(l1000_drugs_es, file.path(data_dir, "l1000_drugs_es.qs"))
 saveRDS(l1000_genes_pdata, file.path(data_dir, "L1000_genes_pdata.rds"))
 saveRDS(l1000_drugs_pdata, file.path(data_dir, "L1000_drugs_pdata.rds"))
 saveRDS('hello there!', file.path(data_dir, "example.rds"))
