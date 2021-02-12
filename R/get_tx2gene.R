@@ -138,12 +138,12 @@ load_tx2gene <- function(species = "Homo sapiens", release = "94") {
     if (grepl("musculus", species)) {
         tx2gene <- readRDS(system.file("extdata",
             "tx2gene_mouse.rds",
-            package = "drugseqr.data"
+            package = "dseqr.data"
         ))
     } else if (grepl("sapiens", species)) {
         tx2gene <- readRDS(system.file("extdata",
             "tx2gene.rds",
-            package = "drugseqr.data"
+            package = "dseqr.data"
         ))
     } else {
         tx2gene <- get_tx2gene(species, release,

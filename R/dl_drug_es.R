@@ -18,7 +18,7 @@ dl_drug_es <- function(
     options(timeout = 120)
 
     # make sure doesn't already exist
-    dest_dir <- system.file(package = "drugseqr.data", mustWork = TRUE)
+    dest_dir <- system.file(package = "dseqr.data", mustWork = TRUE)
     dest_dir <- file.path(dest_dir, "extdata")
     dir.create(dest_dir, showWarnings = FALSE)
 
@@ -56,7 +56,7 @@ dl_drug_es <- function(
 
     for (need_file in need_files) {
         message("downloading: ", need_file)
-        dl_url <- paste0("https://s3.us-east-2.amazonaws.com/drugseqr/",
+        dl_url <- paste0("https://s3.us-east-2.amazonaws.com/dseqr/",
                          need_file)
         utils::download.file(dl_url, file.path(dest_dir, need_file))
     }
@@ -84,7 +84,7 @@ dl_drug_es <- function(
 #' load_drug_es("example.qs")
 load_drug_es <- function(
     file = c("cmap_es_ind.qs", "l1000_drugs_es.qs", "l1000_genes_es.qs")) {
-    dest_dir <- system.file(package = "drugseqr.data", mustWork = TRUE)
+    dest_dir <- system.file(package = "dseqr.data", mustWork = TRUE)
     fpath <- file.path(dest_dir, "extdata", file[1])
 
 

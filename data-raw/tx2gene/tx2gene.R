@@ -52,7 +52,7 @@ saveRDS(tx2gene, "data-raw/tx2gene/tx2gene_mouse.rds")
 
 
 # check concordance with l1000_es/cmap_es ----
-data_dir <- system.file("extdata", package = "drugseqr.data")
+data_dir <- system.file("extdata", package = "dseqr.data")
 cmap_es_ind <- readRDS(file.path(data_dir, "inst/extdata/cmap_es_ind.rds"))
 l1000_es <- readRDS(file.path(data_dir, "inst/extdata/l1000_es.rds"))
 

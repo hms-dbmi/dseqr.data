@@ -1,8 +1,8 @@
 ---
-title: "drugseqr-data"
+title: "dseqr-data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{drugseqr-data}
+  %\VignetteIndexEntry{dseqr-data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -15,28 +15,28 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(drugseqr.data)
+library(dseqr.data)
 ```
 
 # Installation
 
-`drugseqr.data` can be installed from Bioconductor as follows:
+`dseqr.data` can be installed from Bioconductor as follows:
 
 ```{r, eval = FALSE}
 if(!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-BiocManager::install("drugseqr.data")
+BiocManager::install("dseqr.data")
 ```
 
-# Overview of drugseqr.data
+# Overview of dseqr.data
 
-`drugseqr.data` includes:
-  - experiment data from CMAP02 and L1000 for the `drugseqr` package
+`dseqr.data` includes:
+  - experiment data from CMAP02 and L1000 for the `dseqr` package
   - annotation used by `rkal` for importing RNA-Seq data
 
-# Getting Started using drugseqr.data
+# Getting Started using dseqr.data
 
-To load and download CMAP02 and L1000 data, `drugseqr` does the following:
+To load and download CMAP02 and L1000 data, `dseqr` does the following:
 
 
 ```{r}

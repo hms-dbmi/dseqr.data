@@ -1,12 +1,12 @@
-Package: drugseqr.data
+Package: dseqr.data
 Type: Package
-Title: Data for 'drugseqr' and 'rkal' Packages
-Version: 0.99.0
+Title: Data for 'dseqr' and 'rkal' Packages
+Version: 0.99.1
 Authors@R: person("Alex", "Pickering", email="alexvpickering@gmail.com",
                 role=c("cre", "aut"),
                 comment = c(ORCID = "0000-0002-0002-6759"))
-Description: Supporting experiment and annotation data for 'drugseqr' and
-    'rkal' packages. Experiment data for 'drugseqr' includes CMAP02 and L1000 
+Description: Supporting experiment and annotation data for 'dseqr' and
+    'rkal' packages. Experiment data for 'dseqr' includes CMAP02 and L1000 
     perturbation expression profiles and associated perturbation metadata. 
     Annotation data for 'rkal' includes transcript to gene mappings for 
     importing 'kallisto' pseudo quantification results. Pre-built transcript
@@ -35,4 +35,4 @@ biocViews:
     ExpressionData,
     Homo_sapiens_Data
 VignetteBuilder: knitr
-BugReports: https://github.com/hms-dbmi/drugseqr.data/issues
+BugReports: https://github.com/hms-dbmi/dseqr.data/issues

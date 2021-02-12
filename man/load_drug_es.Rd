@@ -5,14 +5,14 @@
 \title{Load drug effect size data}
 \usage{
 load_drug_es(
-  file = c("cmap_es_ind.rds", "l1000_drugs_es.rds", "l1000_genes_es.rds")
+  file = c("cmap_es_ind.qs", "l1000_drugs_es.qs", "l1000_genes_es.qs")
 )
 }
 \arguments{
 \item{file}{Character vector of drug effect size datasets to load. One of
-\code{'cmap_es_ind.rds'} (CMAP02),
-\code{'l1000_drugs_es.rds'} (L1000 compounds), or
-\code{'l1000_genes_es.rds'} (L1000 genetic perturbations).}
+\code{'cmap_es_ind.qs'} (CMAP02),
+\code{'l1000_drugs_es.qs'} (L1000 compounds), or
+\code{'l1000_genes_es.qs'} (L1000 genetic perturbations).}
 }
 \value{
 data.frame of expression values. Rows are genes, columns are
@@ -24,5 +24,5 @@ Downloads requested file if not done so previously.
 \examples{
 
 # dummy example (actual files are large)
-load_drug_es("example.rds")
+load_drug_es("example.qs")
 }

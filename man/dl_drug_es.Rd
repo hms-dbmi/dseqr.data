@@ -5,7 +5,7 @@
 \title{Download drug effect size data.}
 \usage{
 dl_drug_es(
-  files = c("cmap_es_ind.rds", "l1000_drugs_es.rds", "l1000_genes_es.rds"),
+  files = c("cmap_es_ind.qs", "l1000_drugs_es.qs", "l1000_genes_es.qs"),
   check = FALSE
 )
 }
@@ -23,6 +23,6 @@ Download drug effect size data.
 }
 \examples{
 
-dl_drug_es('example.rds')
+dl_drug_es('example.qs')
 
 }

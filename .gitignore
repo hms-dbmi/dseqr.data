@@ -2,7 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-drugseqr.data.Rproj
+dseqr.data.Rproj
 
 # drug effect size data (new users dl from s3)
 inst/extdata/cmap_es_ind.qs
