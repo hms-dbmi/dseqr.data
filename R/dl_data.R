@@ -104,7 +104,7 @@ load_data <- function(
         )
 
         if (is.null(data)) {
-            tryCatch(dl_drug_es(file),
+            tryCatch(dl_data(file),
                      error = function(err) message("Couldn't download", file)
             )
         }
