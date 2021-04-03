@@ -5,6 +5,7 @@
 dseqr.data.Rproj
 
 # drug effect size data (new users dl from s3)
+inst/extdata/human_pbmc.qs
 inst/extdata/cmap_es_ind.qs
 inst/extdata/cmap_pval.adj_ind.rds
 inst/extdata/l1000_es.rds

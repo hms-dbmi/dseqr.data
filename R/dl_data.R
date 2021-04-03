@@ -1,17 +1,17 @@
-#' Download drug effect size data.
+#' Download drug effect size and Azimuth reference data.
 #'
 #' @param files Character vector of file names to download.
-#' @param check Check that existing drug effect size data is loadable? Default
+#' @param check Check that existing data is loadable? Default
 #'   is FALSE.
 #'
-#' @return Downloads drug effect size data into package folder.
+#' @return Downloads data into package folder.
 #' @export
 #' @examples
 #'
-#' dl_drug_es('example.qs')
+#' dl_data('example.qs')
 #'
-dl_drug_es <- function(
-    files = c("cmap_es_ind.qs", "l1000_drugs_es.qs", "l1000_genes_es.qs"),
+dl_data <- function(
+    files = c("cmap_es_ind.qs", "l1000_drugs_es.qs", "l1000_genes_es.qs", "human_pbmc.qs"),
     check = FALSE) {
 
     timeout <- options()$timeout
@@ -65,14 +65,15 @@ dl_drug_es <- function(
 }
 
 
-#' Load drug effect size data
+#' Load drug effect size and Azimuth reference data
 #'
 #' Downloads requested file if not done so previously.
 #'
 #' @param file Character vector of drug effect size datasets to load. One of
 #'   \code{'cmap_es_ind.qs'} (CMAP02),
-#'   \code{'l1000_drugs_es.qs'} (L1000 compounds), or
-#'   \code{'l1000_genes_es.qs'} (L1000 genetic perturbations).
+#'   \code{'l1000_drugs_es.qs'} (L1000 compounds),
+#'   \code{'l1000_genes_es.qs'} (L1000 genetic perturbations), or
+#'   \code{'human_pbmc.qs'} (Azimuth human PBMC reference).
 #'
 #' @return data.frame of expression values. Rows are genes, columns are
 #'   perturbations.
@@ -82,16 +83,16 @@ dl_drug_es <- function(
 #'
 #' # dummy example (actual files are large)
 #' load_drug_es("example.qs")
-load_drug_es <- function(
-    file = c("cmap_es_ind.qs", "l1000_drugs_es.qs", "l1000_genes_es.qs")) {
+load_data <- function(
+    file = c("cmap_es_ind.qs", "l1000_drugs_es.qs", "l1000_genes_es.qs", "human_pbmc.qs")) {
     dest_dir <- system.file(package = "dseqr.data", mustWork = TRUE)
     fpath <- file.path(dest_dir, "extdata", file[1])
 
 
-    drug_es <- NULL
+    data <- NULL
 
-    while (is.null(drug_es)) {
-        drug_es <- tryCatch(
+    while (is.null(data)) {
+        data <- tryCatch(
             {
                 qs::qread(fpath)
             },
@@ -102,12 +103,12 @@ load_drug_es <- function(
             }
         )
 
-        if (is.null(drug_es)) {
+        if (is.null(data)) {
             tryCatch(dl_drug_es(file),
                      error = function(err) message("Couldn't download", file)
             )
         }
     }
 
-    return(drug_es)
+    return(data)
 }
