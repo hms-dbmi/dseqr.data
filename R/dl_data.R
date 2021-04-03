@@ -91,7 +91,9 @@ load_data <- function(
 
     data <- NULL
 
-    while (is.null(data)) {
+    i <- 1
+    while (is.null(data) && i < 5) {
+        i <- i + 1
         data <- tryCatch(
             {
                 qs::qread(fpath)
