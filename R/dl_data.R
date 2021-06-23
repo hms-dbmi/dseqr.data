@@ -10,8 +10,13 @@
 #'
 #' dl_data('example.qs')
 #'
-dl_data <- function(
-    files = c("cmap_es_ind.qs", "l1000_drugs_es.qs", "l1000_genes_es.qs", "human_pbmc.qs"),
+dl_data <- function(files = c("cmap_es_ind.qs",
+                              "l1000_drugs_es.qs",
+                              "l1000_genes_es.qs",
+                              "human_pbmc.qs",
+                              "human_lung.qs",
+                              "human_motorcortex.qs",
+                              "mouse_motorcortex.qs"),
     check = FALSE) {
 
     timeout <- options()$timeout
