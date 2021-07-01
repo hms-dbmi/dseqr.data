@@ -20,7 +20,7 @@ dl_data <- function(files = c("cmap_es_ind.qs",
     check = FALSE) {
 
     timeout <- options()$timeout
-    options(timeout = 120)
+    options(timeout = 600)
 
     # make sure doesn't already exist
     dest_dir <- system.file(package = "dseqr.data", mustWork = TRUE)
