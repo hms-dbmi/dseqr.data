@@ -5,7 +5,7 @@ library(dplyr)
 library(tibble)
 
 tx2gene_human <- get_tx2gene()
-tx2gene_mouse <- get_tx2gene(species = "Mus musculus", release = "98")
+tx2gene_mouse <- dseqr.data:::get_tx2gene(species = "Mus musculus", release = "98")
 
 # get entrezid --> HGNC map used by cmap_es_ind and l1000_es
 load("~/Documents/Batcave/GEO/crossmeta/R/sysdata.rda")
@@ -42,13 +42,14 @@ tx2gene <- group_by(tx2gene_unnest, tx_id) %>%
         entrezid = entrezid[1],
         gene_id = unique(gene_id),
         seq_name = unique(seq_name),
-        description = unique(description)
+        description = unique(description),
+        gene_id_hsapiens = unique(gene_id_hsapiens)
     )
 
 # need tx_id, gene_name and entrezid for rkal::load_seq
 # need gene_id for annotation
 # need description for app
-saveRDS(tx2gene, "data-raw/tx2gene/tx2gene_mouse.rds")
+saveRDS(tx2gene, "inst/extdata/tx2gene_mouse.rds")
 
 
 # check concordance with l1000_es/cmap_es ----
