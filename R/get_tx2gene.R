@@ -15,11 +15,18 @@
 #'
 #' # tx2gene <- get_tx2gene()
 get_tx2gene <- function(species = "Homo sapiens",
-                        release = "94",
-                        columns = c(
-                          "tx_id", "gene_name", "entrezid",
-                          "gene_id", "seq_name", "description"
-                        )) {
+                        release = NULL,
+                        columns = c("tx_id", "gene_name", "entrezid",
+                                    "gene_id", "seq_name", "description")
+                        ) {
+
+  # use latest
+  if (is.null(release)) {
+    ah <- AnnotationHub::AnnotationHub()
+    ahDb <- AnnotationHub::query(ah, pattern = c(species, "EnsDb"))
+    last <- tail(ahDb$title, 1)
+    release <- gsub('^Ensembl ([0-9]+).+?$', '\\1', last)
+  }
 
   # load EnsDb package
   ensdb_package <- get_ensdb_package(species, release)
@@ -171,7 +178,7 @@ build_ensdb <- function(species = "Homo sapiens", release = "94") {
 #' @examples
 #'
 #' tx2gene <- load_tx2gene("Homo sapiens", "94")
-load_tx2gene <- function(species = "Homo sapiens", release = "94") {
+load_tx2gene <- function(species = "Homo sapiens", release = NULL) {
   if (grepl("musculus", species)) {
     tx2gene <- readRDS(system.file("extdata",
                                    "tx2gene_mouse.rds",

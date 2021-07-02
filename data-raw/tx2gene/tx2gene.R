@@ -4,7 +4,7 @@ library(tidyr)
 library(dplyr)
 library(tibble)
 
-tx2gene_human <- get_tx2gene()
+tx2gene_human <- dseqr.data:::get_tx2gene(release = '94')
 tx2gene_mouse <- dseqr.data:::get_tx2gene(species = "Mus musculus", release = "98")
 
 # get entrezid --> HGNC map used by cmap_es_ind and l1000_es

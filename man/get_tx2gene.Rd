@@ -6,7 +6,7 @@
 \usage{
 get_tx2gene(
   species = "Homo sapiens",
-  release = "94",
+  release = NULL,
   columns = c("tx_id", "gene_name", "entrezid", "gene_id", "seq_name", "description")
 )
 }
