@@ -85,10 +85,7 @@ add_hgnc <- function(tx2gene, species, release) {
   map <- map[map$ensembl_gene_id %in% tx2gene$gene_id, ]
 
   # add to tx2gene
-  tx2gene$gene_id_hsapiens <- NA
-  idx <- match(map$ensembl_gene_id, tx2gene$gene_id)
-  tx2gene[idx, 'gene_id_hsapiens'] <- map$hsapiens_homolog_ensembl_gene
-
+  tx2gene <- dplyr::left_join(tx2gene, map, by = c("gene_id" = 'ensembl_gene_id'))
   return(tx2gene)
 }
 
