@@ -55,9 +55,7 @@ get_tx2gene <- function(species = "Homo sapiens",
   }
 
   # add human hgnc symbols
-
   tx2gene <- add_hgnc(tx2gene, species, release)
-
   return(tx2gene)
 }
 
@@ -190,9 +188,7 @@ load_tx2gene <- function(species = "Homo sapiens", release = NULL) {
                                    package = "dseqr.data"
     ))
   } else {
-    tx2gene <- get_tx2gene(species, release,
-                           columns = c("tx_id", "gene_name", "entrezid")
-    )
+    tx2gene <- get_tx2gene(species, release)
   }
 
   return(tx2gene)
