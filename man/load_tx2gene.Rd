@@ -4,7 +4,7 @@
 \alias{load_tx2gene}
 \title{Load transcript to gene map}
 \usage{
-load_tx2gene(species = "Homo sapiens", release = NULL)
+load_tx2gene(species = "Homo sapiens", release = "103", with_hgnc = FALSE)
 }
 \arguments{
 \item{species}{Character vector indicating species. Genus and species should

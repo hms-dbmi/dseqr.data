@@ -15,7 +15,8 @@
 #'
 #' # tx2gene <- get_tx2gene()
 get_tx2gene <- function(species = "Homo sapiens",
-                        release = NULL,
+                        release = '103',
+                        with_hgnc = FALSE,
                         columns = c("tx_id", "gene_name", "entrezid",
                                     "gene_id", "seq_name", "description")
                         ) {
@@ -55,7 +56,7 @@ get_tx2gene <- function(species = "Homo sapiens",
   }
 
   # add human hgnc symbols
-  tx2gene <- add_hgnc(tx2gene, species, release)
+  if (with_hgnc) tx2gene <- add_hgnc(tx2gene, species, release)
   return(tx2gene)
 }
 
@@ -173,7 +174,7 @@ build_ensdb <- function(species = "Homo sapiens", release = "94") {
 #' @examples
 #'
 #' tx2gene <- load_tx2gene("Homo sapiens", "94")
-load_tx2gene <- function(species = "Homo sapiens", release = NULL) {
+load_tx2gene <- function(species = "Homo sapiens", release = '103', with_hgnc = FALSE) {
   if (grepl("musculus", species)) {
     tx2gene <- readRDS(system.file("extdata",
                                    "tx2gene_mouse.rds",
@@ -185,7 +186,7 @@ load_tx2gene <- function(species = "Homo sapiens", release = NULL) {
                                    package = "dseqr.data"
     ))
   } else {
-    tx2gene <- get_tx2gene(species, release)
+    tx2gene <- get_tx2gene(species, release, with_hgnc)
   }
 
   return(tx2gene)
