@@ -219,13 +219,13 @@ build_ensdb <- function(species = "Homo sapiens", release = "94") {
 #' tx2gene <- load_tx2gene("Homo sapiens", "94")
 load_tx2gene <- function(species = "Homo sapiens", release = '103', with_hgnc = FALSE) {
   if (grepl("musculus", species)) {
-    tx2gene <- readRDS(system.file("extdata",
-                                   "tx2gene_mouse.rds",
+    tx2gene <- qs::qread(system.file("extdata",
+                                   "tx2gene_mouse.qs",
                                    package = "dseqr.data"
     ))
   } else if (grepl("sapiens", species)) {
-    tx2gene <- readRDS(system.file("extdata",
-                                   "tx2gene.rds",
+    tx2gene <- qs::qread(system.file("extdata",
+                                   "tx2gene.qs",
                                    package = "dseqr.data"
     ))
   } else {

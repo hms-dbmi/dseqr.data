@@ -9,7 +9,7 @@ tx2gene <- dseqr.data:::get_tx2gene(release = '94')
 tx2gene_mouse <- dseqr.data:::get_tx2gene(species = "Mus musculus", release = "98")
 tx2gene_mouse <- dseqr.data:::add_hgnc(tx2gene_mouse, 'Mus musculus', 98)
 
-saveRDS(tx2gene_mouse, "inst/extdata/tx2gene_mouse.rds")
+qs::qsave(tx2gene_mouse, "inst/extdata/tx2gene_mouse.qs")
 
 # get entrezid --> HGNC map used by cmap_es_ind and l1000_es
 load("/mnt/12tb/Batcave/GEO/crossmeta/R/sysdata.rda")
@@ -51,7 +51,7 @@ tx2gene$hsapiens_homolog_ensembl_gene <- tx2gene$gene_id
 # need tx_id, gene_name and entrezid for rkal::load_seq
 # need gene_id for annotation
 # need description for app
-saveRDS(tx2gene, "inst/extdata/tx2gene.rds")
+qs::qsave(tx2gene, "inst/extdata/tx2gene.qs")
 
 
 # check concordance with l1000_es/cmap_es ----
