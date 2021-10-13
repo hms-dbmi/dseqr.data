@@ -19,7 +19,7 @@ get_tx2gene <- function(species = "Homo sapiens",
                         with_hgnc = FALSE,
                         columns = c("tx_id", "gene_name", "entrezid",
                                     "gene_id", "seq_name", "description")
-                        ) {
+) {
 
   # use latest
   if (is.null(release)) {
@@ -32,7 +32,7 @@ get_tx2gene <- function(species = "Homo sapiens",
   # load EnsDb package
   ensdb_package <- get_ensdb_package(species, release)
   if (!require(ensdb_package, character.only = TRUE)) {
-    build_ensdb(species, release)
+    ensdb_package <- build_ensdb(species, release)
     require(ensdb_package, character.only = TRUE)
   }
 
@@ -60,7 +60,16 @@ get_tx2gene <- function(species = "Homo sapiens",
   return(tx2gene)
 }
 
-get_ensdb_species <- function(species) {
+get_biomart_ensdb_species <- function(species) {
+
+  # a few cases that don't match below pattern
+  switch(species,
+         'Bos indicus x Bos taurus' = return('bihybrid'),
+         'Gorilla gorilla gorilla' = return('ggorilla'),
+         'Mus musculus musculus' = return('mmusculus'),
+         'Mus musculus domesticus' = return('mmusculus')
+  )
+
 
   ensdb_species <- strsplit(species, " ")[[1]]
   nparts <- length(ensdb_species)
@@ -75,18 +84,18 @@ get_ensdb_species <- function(species) {
 
 add_hgnc <- function(tx2gene, species) {
 
-  ensdb_species <- get_ensdb_species(species)
+  ensdb_species <- get_biomart_ensdb_species(species)
 
   mart <- tryCatch(
     biomaRt::useEnsembl(
-    biomart = 'genes',
-    dataset = paste0(ensdb_species, '_gene_ensembl')),
+      biomart = 'genes',
+      dataset = paste0(ensdb_species, '_gene_ensembl')),
     error = function(e) {
       message(e)
       return(NULL)
     })
 
-  # return if couldn't
+  # return if couldn't find
   if (is.null(mart)) return(tx2gene)
 
   map <- biomaRt::getBM(
@@ -116,17 +125,29 @@ add_hgnc <- function(tx2gene, species) {
 #'
 #' get_ensdb_package(species = "Homo sapiens", release = "94")
 #' get_ensdb_package(species = "Canis lupus familiaris", release = "99")
-#' #'
+#'
 get_ensdb_package <- function(species, release) {
-  ensdb_species <- strsplit(species, " ")[[1]][1:2]
-  ensdb_species[1] <- toupper(substr(ensdb_species[1], 1, 1))
+  ensdb_species <- .abbrevOrganismName(.organismName(species))
 
-  ensdb_package <- paste("EnsDb",
-                         paste0(ensdb_species, collapse = ""),
-                         paste0("v", release),
-                         sep = "."
-  )
+  ensdb_package <- paste0(
+    "EnsDb.",
+    .abbrevOrganismName(.organismName(species)),
+    ".v",
+    release)
+
   return(ensdb_package)
+}
+
+# from ensembldb:::.organismName
+.organismName <- function(x) {
+  substring(x, 1, 1) <- toupper(substring(x, 1, 1))
+  return(x)
+}
+
+# from ensembldb:::.abbrevOrganismName
+.abbrevOrganismName <- function(organism) {
+  spc <- unlist(strsplit(organism, "_|[[:space:]]"))
+  return(paste0(substr(spc[[1]], 1, 1), spc[[2]]))
 }
 
 
@@ -134,7 +155,7 @@ get_ensdb_package <- function(species, release) {
 #'
 #' @inheritParams get_tx2gene
 #'
-#' @return Called for side effects.
+#' @return EnsDb package name.
 #' @keywords internal
 #'
 #' @examples
@@ -175,7 +196,11 @@ build_ensdb <- function(species = "Homo sapiens", release = "94") {
 
   # remove source files
   unlink(ensdb_dir, recursive = TRUE)
+
+  return(ensdb_name)
 }
+
+
 
 
 
