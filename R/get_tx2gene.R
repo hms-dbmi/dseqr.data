@@ -100,6 +100,8 @@ add_hgnc <- function(tx2gene, species, release) {
 #' @examples
 #'
 #' get_ensdb_package(species = "Homo sapiens", release = "94")
+#' get_ensdb_package(species = "Canis lupus familiaris", release = "99")
+#' #'
 get_ensdb_package <- function(species, release) {
   ensdb_species <- strsplit(species, " ")[[1]][1:2]
   ensdb_species[1] <- toupper(substr(ensdb_species[1], 1, 1))
