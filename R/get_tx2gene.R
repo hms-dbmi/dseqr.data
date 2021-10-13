@@ -55,14 +55,12 @@ get_tx2gene <- function(species = "Homo sapiens",
                                 tx2gene$description)
   }
 
-  # add human hgnc symbols
+  # try to add human hgnc symbols
   if (with_hgnc) tx2gene <- add_hgnc(tx2gene, species)
   return(tx2gene)
 }
 
-add_hgnc <- function(tx2gene, species) {
-
-  if (species == 'Homo sapiens') return(tx2gene)
+get_ensdb_species <- function(species) {
 
   ensdb_species <- strsplit(species, " ")[[1]]
   nparts <- length(ensdb_species)
@@ -72,10 +70,24 @@ add_hgnc <- function(tx2gene, species) {
   }
 
   ensdb_species <- paste0(ensdb_species, collapse = "")
+  return(ensdb_species)
+}
 
-  mart <- biomaRt::useEnsembl(
+add_hgnc <- function(tx2gene, species) {
+
+  ensdb_species <- get_ensdb_species(species)
+
+  mart <- tryCatch(
+    biomaRt::useEnsembl(
     biomart = 'genes',
-    dataset = paste0(ensdb_species, '_gene_ensembl'))
+    dataset = paste0(ensdb_species, '_gene_ensembl')),
+    error = function(e) {
+      message(e)
+      return(NULL)
+    })
+
+  # return if couldn't
+  if (is.null(mart)) return(tx2gene)
 
   map <- biomaRt::getBM(
     attributes = c("ensembl_gene_id", "hsapiens_homolog_ensembl_gene"),
