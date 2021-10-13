@@ -56,23 +56,26 @@ get_tx2gene <- function(species = "Homo sapiens",
   }
 
   # add human hgnc symbols
-  if (with_hgnc) tx2gene <- add_hgnc(tx2gene, species, release)
+  if (with_hgnc) tx2gene <- add_hgnc(tx2gene, species)
   return(tx2gene)
 }
 
-add_hgnc <- function(tx2gene, species, release) {
+add_hgnc <- function(tx2gene, species) {
 
   if (species == 'Homo sapiens') return(tx2gene)
-  release <- as.numeric(release)
 
   ensdb_species <- strsplit(species, " ")[[1]]
-  ensdb_species[1] <- tolower(substr(ensdb_species[1], 1, 1))
+  nparts <- length(ensdb_species)
+
+  for (i in seq_len(nparts-1)) {
+    ensdb_species[i] <- tolower(substr(ensdb_species[i], 1, 1))
+  }
+
   ensdb_species <- paste0(ensdb_species, collapse = "")
 
   mart <- biomaRt::useEnsembl(
     biomart = 'genes',
-    dataset = paste0(ensdb_species, '_gene_ensembl'),
-    version = release)
+    dataset = paste0(ensdb_species, '_gene_ensembl'))
 
   map <- biomaRt::getBM(
     attributes = c("ensembl_gene_id", "hsapiens_homolog_ensembl_gene"),
