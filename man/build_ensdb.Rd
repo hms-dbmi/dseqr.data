@@ -14,7 +14,7 @@ be space separated, not underscore. Default is \code{'Homo sapiens'}.}
 \code{\link[rkal]{build_kallisto_index}}.}
 }
 \value{
-Called for side effects.
+EnsDb package name.
 }
 \description{
 Build and install ensembldb annotation package.

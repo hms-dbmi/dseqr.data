@@ -82,14 +82,15 @@ get_biomart_ensdb_species <- function(species) {
   return(ensdb_species)
 }
 
-add_hgnc <- function(tx2gene, species) {
+add_hgnc <- function(tx2gene, species, version = NULL) {
 
   ensdb_species <- get_biomart_ensdb_species(species)
 
   mart <- tryCatch(
     biomaRt::useEnsembl(
       biomart = 'genes',
-      dataset = paste0(ensdb_species, '_gene_ensembl')),
+      dataset = paste0(ensdb_species, '_gene_ensembl'),
+      version = version),
     error = function(e) {
       message(e)
       return(NULL)
