@@ -16,7 +16,8 @@ dl_data <- function(files = c("cmap_es_ind.qs",
                               "human_pbmc.qs",
                               "human_lung.qs",
                               "human_motorcortex.qs",
-                              "mouse_motorcortex.qs"),
+                              "mouse_motorcortex.qs",
+                              "zhang_reference.qs"),
     check = FALSE) {
 
     timeout <- options()$timeout
@@ -40,7 +41,7 @@ dl_data <- function(files = c("cmap_es_ind.qs",
             # store file name if can load
             fname <- tryCatch(
                 {
-                    drug_es <- readRDS(file.path(dest_dir, exist_file))
+                    drug_es <- qs::qread(file.path(dest_dir, exist_file))
                     exist_file
                 },
                 error = function(err) {
