@@ -20,7 +20,7 @@ ref <- get_reference('human_lung')
 # human/mouse motor cortex
 ref <- get_reference('human_motorcortex')
 ref <- get_reference('mouse_motorcortex')
-
+ref <- get_reference('human_bonemarrow')
 
 # UPLOAD ADDED REFS TO AWS
 # ADD TO dl_data files argument

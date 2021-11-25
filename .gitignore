@@ -4,11 +4,19 @@
 .Ruserdata
 dseqr.data.Rproj
 
-# drug effect size data (new users dl from s3)
+#symphony references
+data-raw/symphony/scmuscle.qs
+inst/extdata/scmuscle_reference.qs
+inst/extdata/scmuscle_uwot_model
+
+# azimuth references
 inst/extdata/human_pbmc.qs
 inst/extdata/human_lung.qs
 inst/extdata/human_motorcortex.qs
+inst/extdata/human_bonemarrow.qs
 inst/extdata/mouse_motorcortex.qs
+
+# drug effect size data (new users dl from s3)
 inst/extdata/cmap_es_ind.qs
 inst/extdata/cmap_pval.adj_ind.rds
 inst/extdata/l1000_es.rds
@@ -17,6 +25,8 @@ inst/extdata/l1000_genes_es.qs
 inst/extdata/l1000_pval.adj.rds
 inst/extdata/l1000_pval.rds
 data-raw/velocity/EnsDb.Hsapiens.v94/*
+
+
 
 inst/indices/*
 inst/doc
