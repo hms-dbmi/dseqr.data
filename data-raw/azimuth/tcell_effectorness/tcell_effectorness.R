@@ -100,5 +100,12 @@ scdata <- cells
 names(scdata@reductions) <- c('PCA', 'umap')
 Idents(scdata) <- 'celltype.cytokines'
 scdata <- SeuratObject::RenameAssays(scdata, 'refAssay' = 'RNA')
-scdata$sample <- paste(scdata$donor.id, scdata$cell.type, scdata$cytokine.condition, sep='.')
-qs::qsave(scdata, file.path(data_dir, "allCells_Seurat.qs"))
+scdata$sample <- paste(scdata$donor.id, scdata$cytokine.condition, sep='.')
+
+# necessary to preserve reference resolutions
+scdata$predicted.celltype.cytokines <- scdata$celltype.cytokines
+scdata$predicted.celltype.stimulated <- scdata$celltype.stimulated
+scdata@misc$ref_name <- 'human_differentiated_tcell'
+scdata@misc$resoln <- 'predicted.celltype.cytokines'
+
+qs::qsave(scdata, file.path(data_dir, "differentiated_cd4_tcells.qs"))

@@ -12,10 +12,14 @@ inst/extdata/scmuscle_uwot_model
 # azimuth references
 inst/extdata/human_pbmc.qs
 inst/extdata/human_lung.qs
+inst/extdata/human_lung_v2.qs
 inst/extdata/human_motorcortex.qs
 inst/extdata/human_bonemarrow.qs
 inst/extdata/mouse_motorcortex.qs
 inst/extdata/human_differentiated_tcell.qs
+inst/extdata/mouse_virus_cd4_tcells.qs
+inst/extdata/mouse_virus_cd8_tcells.qs
+inst/extdata/mouse_til_tcells.qs
 data-raw/azimuth/tcell_effectorness/data/*
 
 # drug effect size data (new users dl from s3)
@@ -27,6 +31,9 @@ inst/extdata/l1000_genes_es.qs
 inst/extdata/l1000_pval.adj.rds
 inst/extdata/l1000_pval.rds
 data-raw/velocity/EnsDb.Hsapiens.v94/*
+
+data-raw/azimuth/**/*.qs
+data-raw/azimuth/**/*.rds
 
 
 

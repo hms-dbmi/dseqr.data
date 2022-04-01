@@ -14,8 +14,12 @@ get_reference <- function(ref_name, version = 'v1.0.0', ref_dir = 'inst/extdata'
 # human pbmc
 # ref <- get_reference('human_pbmc')
 
-#human lung
+# human lung
 ref <- get_reference('human_lung')
+
+# human lung v2: from https://zenodo.org/record/6342228
+ref <- LoadReference('data-raw/azimuth/human_lung_v2')
+qsave(ref, 'inst/extdata/human_lung_v2.qs')
 
 # human/mouse motor cortex
 ref <- get_reference('human_motorcortex')

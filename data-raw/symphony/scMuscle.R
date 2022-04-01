@@ -49,6 +49,11 @@ qs::qsave(ref, 'inst/extdata/scmuscle_reference.qs')
 # store clusters as idents
 Idents(sdata) <- 'harmony_res.1.2_IDs'
 
+# necessary to preserve reference resolutions
+sdata$predicted.celltype <- sdata$harmony_res.1.2_IDs
+sdata@misc$ref_name <- 'scmuscle'
+sdata@misc$resoln <- 'predicted.celltype'
+
 # save Seurat object
 qs::qsave(sdata, 'data-raw/symphony/scmuscle.qs')
 
