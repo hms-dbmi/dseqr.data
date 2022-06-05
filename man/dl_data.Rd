@@ -6,7 +6,8 @@
 \usage{
 dl_data(
   files = c("cmap_es_ind.qs", "l1000_drugs_es.qs", "l1000_genes_es.qs",
-    "human_pbmc.qs", "human_lung.qs", "human_motorcortex.qs", "mouse_motorcortex.qs"),
+    "human_pbmc.qs", "human_lung.qs", "human_motorcortex.qs", "mouse_motorcortex.qs",
+    "zhang_reference.qs"),
   check = FALSE
 )
 }
@@ -20,7 +21,8 @@ is FALSE.}
 Downloads data into package folder.
 }
 \description{
-Download drug effect size and Azimuth reference data.
+Will download to R package extdata folder if the environmental variable
+`DSEQR_DATA_PATH` is unset.
 }
 \examples{
 

@@ -9,11 +9,11 @@ load_data(
 )
 }
 \arguments{
-\item{file}{Character vector of drug effect size datasets to load. One of
-\code{'cmap_es_ind.qs'} (CMAP02),
-\code{'l1000_drugs_es.qs'} (L1000 compounds),
-\code{'l1000_genes_es.qs'} (L1000 genetic perturbations), or
-\code{'human_pbmc.qs'} (Azimuth human PBMC reference).}
+\item{file}{Character vector of drug effect size datasets to load. One of:
+* `'cmap_es_ind.qs'` - CMAP02
+* `'l1000_drugs_es.qs'` - L1000 compounds
+* `'l1000_genes_es.qs'` - L1000 genetic perturbations
+* `'human_pbmc.qs'` - Azimuth human PBMC reference}
 }
 \value{
 data.frame of expression values. Rows are genes, columns are

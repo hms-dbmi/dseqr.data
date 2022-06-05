@@ -1,5 +1,8 @@
 #' Download drug effect size and Azimuth reference data.
 #'
+#' Will download to R package extdata folder if the environmental variable
+#' `DSEQR_DATA_PATH` is unset.
+#'
 #' @param files Character vector of file names to download.
 #' @param check Check that existing data is loadable? Default
 #'   is FALSE.
@@ -20,14 +23,21 @@ dl_data <- function(files = c("cmap_es_ind.qs",
                               "zhang_reference.qs"),
     check = FALSE) {
 
+
+    # default to downloading to package directory
+    dest_dir <- Sys.getenv('DSEQR_DATA_PATH')
+    if (dest_dir == "") {
+        dest_dir <- system.file(package = "dseqr.data", mustWork = TRUE)
+        dest_dir <- file.path(dest_dir, "extdata")
+    }
+
+    dir.create(dest_dir, showWarnings = FALSE)
+
     timeout <- options()$timeout
     options(timeout = 600)
 
-    # make sure doesn't already exist
-    dest_dir <- system.file(package = "dseqr.data", mustWork = TRUE)
-    dest_dir <- file.path(dest_dir, "extdata")
-    dir.create(dest_dir, showWarnings = FALSE)
 
+    # make sure doesn't already exist
     can_load <- c()
     exist_files <- file.exists(file.path(dest_dir, files))
     exist_files <- files[exist_files]
@@ -75,11 +85,11 @@ dl_data <- function(files = c("cmap_es_ind.qs",
 #'
 #' Downloads requested file if not done so previously.
 #'
-#' @param file Character vector of drug effect size datasets to load. One of
-#'   \code{'cmap_es_ind.qs'} (CMAP02),
-#'   \code{'l1000_drugs_es.qs'} (L1000 compounds),
-#'   \code{'l1000_genes_es.qs'} (L1000 genetic perturbations), or
-#'   \code{'human_pbmc.qs'} (Azimuth human PBMC reference).
+#' @param file Character vector of drug effect size datasets to load. One of:
+#'   * `'cmap_es_ind.qs'` - CMAP02
+#'   * `'l1000_drugs_es.qs'` - L1000 compounds
+#'   * `'l1000_genes_es.qs'` - L1000 genetic perturbations
+#'   * `'human_pbmc.qs'` - Azimuth human PBMC reference
 #'
 #' @return data.frame of expression values. Rows are genes, columns are
 #'   perturbations.
@@ -91,10 +101,15 @@ dl_data <- function(files = c("cmap_es_ind.qs",
 #' load_drug_es("example.qs")
 load_data <- function(
     file = c("cmap_es_ind.qs", "l1000_drugs_es.qs", "l1000_genes_es.qs", "human_pbmc.qs")) {
-    dest_dir <- system.file(package = "dseqr.data", mustWork = TRUE)
-    fpath <- file.path(dest_dir, "extdata", file[1])
 
+    # default to loading from package directory
+    dest_dir <- Sys.getenv('DSEQR_DATA_PATH')
+    if (dest_dir == "") {
+        dest_dir <- system.file(package = "dseqr.data", mustWork = TRUE)
+        dest_dir <- file.path(dest_dir, "extdata")
+    }
 
+    fpath <- file.path(dest_dir, file[1])
     data <- NULL
 
     i <- 1
@@ -112,7 +127,7 @@ load_data <- function(
         )
 
         if (is.null(data)) {
-            tryCatch(dl_data(file),
+            tryCatch(dl_data(file, dest_dir = dest_dir),
                      error = function(err) message("Couldn't download", file)
             )
         }
