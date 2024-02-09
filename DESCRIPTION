@@ -1,7 +1,7 @@
 Package: dseqr.data
 Type: Package
 Title: Data for 'dseqr' and 'rkal' Packages
-Version: 0.99.8
+Version: 0.99.9
 Authors@R: person("Alex", "Pickering", email="alexvpickering@gmail.com",
                 role=c("cre", "aut"),
                 comment = c(ORCID = "0000-0002-0002-6759"))

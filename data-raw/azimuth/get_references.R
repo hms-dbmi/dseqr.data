@@ -26,5 +26,9 @@ ref <- get_reference('human_motorcortex')
 ref <- get_reference('mouse_motorcortex')
 ref <- get_reference('human_bonemarrow')
 
+# human fetus
+ref <- LoadReference('data-raw/azimuth/human_fetus')
+qsave(ref, 'inst/extdata/human_fetus.qs')
+
 # UPLOAD ADDED REFS TO AWS
 # ADD TO dl_data files argument

@@ -20,7 +20,8 @@ dl_data <- function(files = c("cmap_es_ind.qs",
                               "human_lung.qs",
                               "human_motorcortex.qs",
                               "mouse_motorcortex.qs",
-                              "zhang_reference.qs"),
+                              "zhang_reference.qs",
+                              "human_fetus.qs"),
     check = FALSE) {
 
 

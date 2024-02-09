@@ -21,7 +21,9 @@ inst/extdata/mouse_virus_cd4_tcells.qs
 inst/extdata/mouse_virus_cd8_tcells.qs
 inst/extdata/mouse_til_tcells.qs
 inst/extdata/human_stimulated_pbmc.qs
+inst/extdata/human_fetus.qs
 data-raw/azimuth/tcell_effectorness/data/*
+data-raw/azimuth/human_fetus/*
 
 # drug effect size data (new users dl from s3)
 inst/extdata/cmap_es_ind.qs
