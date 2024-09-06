@@ -58,13 +58,13 @@ saveRDS(cmap_pdata, file.path(data_dir, "CMAP02_pdata.rds"))
 
 # setup pdata for L1000 ------
 
-l1000_eset <- readRDS("/home/alex/Documents/Batcave/GEO/GEOdb/data-raw/avpick/data_dir/L1000/L1000_eset.rds")
+l1000_eset <- readRDS("/mnt/12tb/Batcave/GEO/GEOdb/data-raw/avpick/data_dir/L1000/L1000_eset.rds")
 l1000_pdata <- pData(l1000_eset[[1]])
 
 # setup so that matches drug_es
-l1000_es <- readRDS("/home/alex/Documents/Batcave/GEO/l1000/level1/6-limma/l1000_es.rds")
-l1000_pval <- readRDS("/home/alex/Documents/Batcave/GEO/l1000/level1/6-limma/l1000_pval.rds")
-l1000_pval.adj <- readRDS("/home/alex/Documents/Batcave/GEO/l1000/level1/6-limma/l1000_pval.adj.rds")
+l1000_es <- readRDS("/mnt/12tb/Batcave/GEO/l1000/level1/6-limma/l1000_es.rds")
+l1000_pval <- readRDS("/mnt/12tb/Batcave/GEO/l1000/level1/6-limma/l1000_pval.rds")
+l1000_pval.adj <- readRDS("/mnt/12tb/Batcave/GEO/l1000/level1/6-limma/l1000_pval.adj.rds")
 
 # remove columns that don't need right now
 # smiles and trt_nums (from rnama.com to match GSE1_p1-p2 contrasts from predicted groups)
@@ -135,8 +135,8 @@ l1000_drugs_pdata <- l1000_pdata[!is.genetic, ]
 
 # save pdata and overwrite existing l1000_es data with fixed names
 # ALSO UPDATE S3 DATA for l1000_es in dseqr BUCKET IF ANYTHING CHANGES
-saveRDS(l1000_pval, file.path(data_dir, "l1000_pval.rds"))
-saveRDS(l1000_pval.adj, file.path(data_dir, "l1000_pval.adj.rds"))
+qs::qsave(l1000_pval, file.path(data_dir, "l1000_pval.qs"))
+qs::qsave(l1000_pval.adj, file.path(data_dir, "l1000_pval.adj.qs"))
 qs::qsave(l1000_genes_es, file.path(data_dir, "l1000_genes_es.qs"))
 qs::qsave(l1000_drugs_es, file.path(data_dir, "l1000_drugs_es.qs"))
 saveRDS(l1000_genes_pdata, file.path(data_dir, "L1000_genes_pdata.rds"))
