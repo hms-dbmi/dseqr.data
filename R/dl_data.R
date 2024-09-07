@@ -103,8 +103,13 @@ dl_data <- function(files = c("cmap_es_ind.qs",
 load_data <- function(
     file = c("cmap_es_ind.qs", "l1000_drugs_es.qs", "l1000_genes_es.qs", "human_pbmc.qs")) {
 
-    # read either qs or rds files
-    read_fun <- ifelse(grepl('.qs$', file), qs::qread, readRDS)
+    # read either qs, rds, or pt files
+    ext <- tools::file_ext(file)
+    read_fun <- switch (tools::file_ext(file),
+        'qs' = qs::qread,
+        'rds' = readRDS,
+        'pt' = torch::torch_load
+    )
 
     # default to loading from package directory
     dest_dir <- Sys.getenv('DSEQR_DATA_PATH')
