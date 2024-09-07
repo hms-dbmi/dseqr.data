@@ -31,8 +31,26 @@ inst/extdata/cmap_pval.adj_ind.rds
 inst/extdata/l1000_es.rds
 inst/extdata/l1000_drugs_es.qs
 inst/extdata/l1000_genes_es.qs
-inst/extdata/l1000_pval.adj.rds
-inst/extdata/l1000_pval.rds
+inst/extdata/lincs2_drugs_es.qs
+inst/extdata/lincs2_genes_es.qs
+inst/extdata/lincs2_drugs_annot.rds
+inst/extdata/lincs2_drugs_pdata.rds
+inst/extdata/lincs2_genes_annot.rds
+inst/extdata/lincs2_genes_pdata.rds
+inst/extdata/l1000_pval.adj.qs
+inst/extdata/l1000_pval.qs
+
+# broad repurposing hub downloads
+data-raw/drug_annot/repurposing_*.txt
+
+# siamese model
+inst/extdata/siamese_model.pt
+
+# progeny
+data-raw/progeny/zscores.rds
+data-raw/progeny/model.rds
+data-raw/progeny/signal_genes.rds
+
 data-raw/velocity/EnsDb.Hsapiens.v94/*
 
 data-raw/azimuth/**/*.qs
