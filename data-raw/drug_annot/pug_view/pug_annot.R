@@ -40,4 +40,4 @@ sum(pug_annot$gras)
 sum(!is.na(pug_annot$wikipedia))
 # 1704
 
-saveRDS(pug_annot, 'pug_annot.rds')
+saveRDS(pug_annot, 'data-raw/drug_annot/pug_view/pug_annot.rds')
