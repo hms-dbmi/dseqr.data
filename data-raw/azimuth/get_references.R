@@ -1,34 +1,24 @@
 library(qs)
 library(Azimuth)
+library(Seurat)
 
-get_reference <- function(ref_name, version = 'v1.0.0', ref_dir = 'inst/extdata') {
-    reference <- LoadReference(path = file.path("https://seurat.nygenome.org/azimuth/references",
-                                                version,
-                                                ref_name),
-                               seconds=200L)
+refs <- c(human_pbmc = 'pbmcref',
+          human_lung_v2 = 'lungref',
+          human_motorcortex = 'humancortexref',
+          mouse_motorcortex = 'mousecortexref',
+          human_bonemarrow = 'bonemarrowref',
+          human_fetus = 'fetusref',
+          human_liver = 'bonemarrowref')
 
-    qsave(reference, file.path(ref_dir, paste0(ref_name, '.qs')))
-    return(reference)
+options(timeout = 1000)
+
+for (i in 1:length(refs)) {
+    ref <- refs[i]
+    SeuratData::InstallData(ref, force.reinstall = TRUE)
+    ref <- SeuratData::LoadData(ref, type = 'azimuth')
+    ref_path <- file.path('inst/extdata', paste0(names(refs)[i], '.qs'))
+    qsave(ref, ref_path)
 }
-
-# human pbmc
-# ref <- get_reference('human_pbmc')
-
-# human lung
-ref <- get_reference('human_lung')
-
-# human lung v2: from https://zenodo.org/record/6342228
-ref <- LoadReference('data-raw/azimuth/human_lung_v2')
-qsave(ref, 'inst/extdata/human_lung_v2.qs')
-
-# human/mouse motor cortex
-ref <- get_reference('human_motorcortex')
-ref <- get_reference('mouse_motorcortex')
-ref <- get_reference('human_bonemarrow')
-
-# human fetus
-ref <- LoadReference('data-raw/azimuth/human_fetus')
-qsave(ref, 'inst/extdata/human_fetus.qs')
 
 # UPLOAD ADDED REFS TO AWS
 # ADD TO dl_data files argument
